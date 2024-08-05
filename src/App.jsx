@@ -8,6 +8,8 @@ import { setUserDetails } from "./store/Userslice";
 import { useDispatch } from 'react-redux'
 import { useEffect, useState } from "react";
 import { apiurl } from "./Constants/apiurl";
+import "./App.css"
+
 
 
 function App() {
@@ -26,7 +28,7 @@ function App() {
       }
     } catch (error) {
       console.error('Failed to fetch user details:', error);
-      toast.error('Failed to fetch user details');
+
     } finally {
       setIsLoading(false);
     }
@@ -43,10 +45,10 @@ function App() {
        {isLoading ? (
       <div className="loading">Loading...</div>
     ) :(
-       <main className='source' style={{minHeight:"100vh"}}>
-        <Outlet />
-    
-      </main>)}
+      <main style={{ minHeight: "100vh"}} className="source">
+      <Outlet />
+    </main>
+    )}
        <Footer />
        
      </div>

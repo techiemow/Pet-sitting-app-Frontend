@@ -1,0 +1,42 @@
+.navbar {
+  background-color: #f8f9fa;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-brand img {
+  margin-right: 10px;
+}
+
+.navbar-nav {
+  margin: 0 auto; /* Center the navigation items */
+}
+
+.nav-link {
+  transition: color 0.3s;
+}
+
+.nav-link:hover {
+  color: #007bff;
+  cursor: pointer;
+}
+
+.fixed-top {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1030;
+}
+
+/* Define the height of the Navbar */
+.navbar {
+  height: 70px; /* Adjust according to your Navbar's actual height */
+}
+
+/* Add padding to the top of the main content */
+.content {
+  padding-top: 70px; /* Adjust according to your Navbar's actual height */
+}

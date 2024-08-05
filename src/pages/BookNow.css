@@ -1,0 +1,14 @@
+/* Optional: Custom styles for BookNow component */
+.card {
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+  
+  }
+
+
+ #source{
+margin-bottom: 10px ;
+background:  rgba(0, 0, 0, 0.1);
+  }
+  

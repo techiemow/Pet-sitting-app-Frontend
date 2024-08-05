@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap');
+body {
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+.carousel-caption {
+  position: absolute;
+  bottom: 20%;
+  left: 50%;
+  transform: translateX(-40%);
+  text-align: center;
+}
+
+.carousel-caption .btn {
+  margin: 10px;
+  opacity: 0.8;
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+.carousel-caption .btn:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.list-inline li {
+  margin-bottom: 10px;
+  
+  opacity: 0.6;
+}
+
+.list-inline li:hover {
+
+  opacity: 1.1;
+}
+
+.container {
+  margin-top: 30px;
+}
+
+img {
+  border-radius: 10px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+img:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+
