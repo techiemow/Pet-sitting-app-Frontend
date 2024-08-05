@@ -174,7 +174,7 @@ const Login = () => {
                     </Typography>
                     </Grid>
                   <Grid item>
-                  <Link to="/Register" style={{ textDecoration: 'underline' }} className='text-blue-500 '>
+                  <Link to="/SignUp" style={{ textDecoration: 'underline' }} className='text-blue-500 '>
   {"Don't have an account? Sign Up"}
 </Link>
                   </Grid>
