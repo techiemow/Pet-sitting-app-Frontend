@@ -5,6 +5,8 @@ import App from '../App';
 import Home from '../Components/Home';
 import BookNow from '../pages/BookNow';
 import Contact from '../pages/Contact';
+import PricingPlans from '../pages/PricingPlans';
+import MyBookings from '../pages/MyBookings';
 
 
 
@@ -32,8 +34,16 @@ const router  = createBrowserRouter(
       element:<BookNow />
     },
     {
-      path:"Contact",
+      path:"/Contact",
       element:<Contact/>
+    },
+    {
+      path:"/Plans",
+      element:<PricingPlans  />
+    },
+    {
+      path: "/MyBookings",
+      element:<MyBookings />
     },
     {
       path: "*",

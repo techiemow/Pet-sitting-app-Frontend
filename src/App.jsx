@@ -43,7 +43,7 @@ function App() {
       <ToastContainer position="top-center" autoClose={5000} />
        <Navbar/>
        {isLoading ? (
-      <div className="loading">Loading...</div>
+      <div className="loading" style={{ minHeight: "100vh"}}>Loading...</div>
     ) :(
       <main style={{ minHeight: "100vh"}} className="source">
       <Outlet />

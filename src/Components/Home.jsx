@@ -5,16 +5,18 @@ import about1 from "../assets/about-1.jpg";
 import about2 from "../assets/about-2.jpg";
 import about3 from "../assets/about-3.jpg";
 import "./Home.css"
+import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
+  const navigate = useNavigate();
   return (
     <div>
       <div id="carouselExampleControls" className="carousel slide" data-bs-ride="carousel" style={{ position: "relative" }}>
         <div className="carousel-inner">
-          <div className="carousel-item active">
+          <div className="carousel-item ">
             <img className="d-block w-100" src={carousel1} alt="First slide" />
           </div>
-          <div className="carousel-item">
+          <div className="carousel-item active">
             <img className="d-block w-100" src={carousel3} alt="Third slide" />
           </div>
         </div>
@@ -27,8 +29,8 @@ const Home = () => {
           <span className="visually-hidden">Next</span>
         </a>
         <div className="carousel-caption d-none d-md-block"  style={{ position:"absolute"}}>
-          <button className="btn btn-primary btn-lg">Book Now</button>
-          <button className="btn btn-secondary btn-lg">Read More</button>
+          <button className="btn btn-primary btn-lg" onClick={()=>{navigate("/BookNow")}}>Book Now</button>
+          <button className="btn btn-secondary btn-lg" onClick={()=>{navigate("/Plans")}}>Read More</button>
         </div>
       </div>
       <div className="container py-5">
