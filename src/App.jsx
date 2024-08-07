@@ -9,6 +9,8 @@ import { useDispatch } from 'react-redux'
 import { useEffect, useState } from "react";
 import { apiurl } from "./Constants/apiurl";
 import "./App.css"
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
 
 
 
@@ -23,6 +25,7 @@ function App() {
         withCredentials: true,
       });
       console.log('user', dataResponse.data.data);
+      
       if (dataResponse.data.success) {
         dispatch(setUserDetails(dataResponse.data.data));
       }
@@ -37,8 +40,20 @@ function App() {
     fetchUserDetails();
   }, []);
 
-  return (
 
+
+  const theme = createTheme({
+    palette: {
+      primary: {
+        main: '#1976d2', // Your primary color
+      },
+      secondary: {
+        main: '#dc004e', // Your secondary color
+      },
+    },
+  });
+  return (
+    <ThemeProvider theme={theme}>
      <div>
       <ToastContainer position="top-center" autoClose={5000} />
        <Navbar/>
@@ -52,6 +67,7 @@ function App() {
        <Footer />
        
      </div>
+     </ThemeProvider>
   )
 }
 

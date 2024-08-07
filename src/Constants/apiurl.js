@@ -3,9 +3,3 @@ export const apiurl =
     ? "http://localhost:4000"
     : `http://localhost:4000`;
 
-  const Roles = {
-      ADMIN : "Admin",
-      User : "User"
-  }
-  
-  export default Roles

@@ -9,6 +9,7 @@ import { apiurl } from '../Constants/apiurl';
 import { toast } from 'react-toastify';
 import './BookNow.css';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const BookNow = () => {
   const [formValues, setFormValues] = useState({
@@ -22,6 +23,7 @@ const BookNow = () => {
     price: 0 // Add price to formValues
   });
   
+  const navigate = useNavigate();
   const [price, setPrice] = useState(0);
 
   const carePlanPrices = {
@@ -34,7 +36,7 @@ const BookNow = () => {
     if (formValues.startDate && formValues.endDate && formValues.careType) {
       const start = new Date(formValues.startDate);
       const end = new Date(formValues.endDate);
-      const days = Math.ceil((end - start) / (1000 * 60 * 60 * 24)) + 1; // Add 1 to include both start and end dates
+      const days = Math.ceil((end - start) / (1000 * 60 * 60 * 24)) ; // Add 1 to include both start and end dates
 
       const carePlanPrice = carePlanPrices[formValues.careType] || 0;
       const totalPrice = days * carePlanPrice;
@@ -87,6 +89,7 @@ const BookNow = () => {
           price: 0
         });
         setPrice(0);
+        navigate("/MyBookings")
       } else {
         toast.error('Error booking your pet. Please try again later.');
       }
