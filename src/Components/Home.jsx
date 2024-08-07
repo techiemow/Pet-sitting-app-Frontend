@@ -6,6 +6,15 @@ import about2 from "../assets/about-2.jpg";
 import about3 from "../assets/about-3.jpg";
 import "./Home.css"
 import { useNavigate } from 'react-router-dom';
+import boarding from "../assets/pet.png"
+import feeding from "../assets/pet-food.png"
+import grooming from "../assets/petgrooming.png"
+import training from "../assets/training.png"
+import treatment from "../assets/pettreatment.png"
+import exercise from "../assets/pet exercise.png"
+
+
+
 
 const Home = () => {
   const navigate = useNavigate();
@@ -71,6 +80,80 @@ const Home = () => {
           </div>
         </div>
       </div>
+      <div class="container-fluid bg-light pt-5">
+        <div class="container py-5">
+            <div class="d-flex flex-column text-center mb-5">
+                <h4 class="text-secondary mb-3">Our Services</h4>
+                <h1 class="display-4 m-0"><span class="text-primary">Premium</span> Pet Services</h1>
+            </div>
+            <div class="row pb-3">
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="d-flex flex-column text-center bg-white mb-2 p-3 p-sm-5">
+                     
+                     <div>
+                     <img src={boarding} alt='boarding' width={40} height={40} />
+                     <h3 class="mb-3">Pet Boarding</h3>
+                     </div>
+                        <p>Our premium pet boarding services ensure your pet is safe and comfortable while you are away.</p>
+                        <a class="text-uppercase font-weight-bold" href="#">Read More</a>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="d-flex flex-column text-center bg-white mb-2 p-3 p-sm-5">
+               <div>
+               <img src={feeding} alt='boarding' width={40} height={40} />
+               <h3 class="mb-3">Pet Feeding</h3>
+               </div>
+                        <p>We provide a balanced and nutritious diet tailored to your pet's needs.</p>
+                        <a class="text-uppercase font-weight-bold" href="#">Read More</a>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="d-flex flex-column text-center bg-white mb-2 p-3 p-sm-5">
+                          <div>
+                          <img src={grooming} alt='boarding' width={40} height={40} />
+                          <h3 class="mb-3">Pet Grooming</h3>
+                          </div>
+                        <p>Our grooming services will keep your pet looking and feeling their best.</p>
+                        <a class="text-uppercase font-weight-bold" href="#">Read More</a>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="d-flex flex-column text-center bg-white mb-2 p-3 p-sm-5">
+                         <div>
+                          <img src={training} alt='boarding' width={40} height={40} />
+                       
+                          <h3 class="mb-3">Pet Training</h3>
+                          </div>
+                        <p>Our expert trainers will help your pet learn new skills and improve their behavior.</p>
+                        <a class="text-uppercase font-weight-bold" href="#">Read More</a>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="d-flex flex-column text-center bg-white mb-2 p-3 p-sm-5">
+                    <div>
+                          <img src={exercise} alt='boarding' width={40} height={40} />
+                       
+                          <h3 class="mb-3">Pet Exercise</h3>
+                          </div>
+                        <p>We offer various exercise programs to keep your pet healthy and active.</p>
+                        <a class="text-uppercase font-weight-bold" href="#">Read More</a>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="d-flex flex-column text-center bg-white mb-2 p-3 p-sm-5">
+                    <div>
+                          <img src={treatment} alt='boarding' width={40} height={40} />
+                       
+                          <h3 class="mb-3">Pet Treatment</h3>
+                          </div>
+                        <p>Our veterinary services ensure your pet receives the best medical care.</p>
+                        <a class="text-uppercase font-weight-bold" href="#">Read More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
     </div>
   );
 }

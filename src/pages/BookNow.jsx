@@ -1,61 +1,76 @@
-import React, { useState } from 'react';
-import { Container, Typography, TextField, Button, Grid, Card, CardContent, CardMedia, FormControl, InputLabel, Select, MenuItem, FormHelperText } from '@mui/material';
-import { Formik, Form, Field } from 'formik';
-import * as Yup from 'yup';
-import "./BookNow.css";
-import image1 from "../assets/booknow1.jpg";
-import image2 from "../assets/booknow2.jpg";
-import image3 from "../assets/booknow3.jpeg";
-import axios from 'axios';
-import { apiurl } from '../Constants/apiurl';
-import { toast } from 'react-toastify';
+  import React, { useState } from 'react';
+  import { Container, Grid, TextField, Button, Card, CardContent, CardMedia, Typography } from '@mui/material';
+  import UploadImage from '../Helper/Uploadimage';
+  import { MdDelete } from "react-icons/md";
+  import image1 from "../assets/booknow1.jpg";
+  import image2 from "../assets/booknow2.jpg";
+  import image3 from "../assets/booknow3.jpeg";
+  import { apiurl } from '../Constants/apiurl';
+  import { toast } from 'react-toastify';
+  import './BookNow.css';
+  import axios from 'axios';
 
-// Define the validation schema
-const validationSchema = Yup.object({
-  petName: Yup.string().required('Pet name is required'),
-  petType: Yup.string().required('Pet type is required'),
-  careType: Yup.string().required('Care type is required'),
-  startDate: Yup.date().required('Start date is required').nullable(),
-  endDate: Yup.date().required('End date is required').nullable(),
-  specialRequests: Yup.string()
-});
-// Define the initial form values
-const initialValues = {
-  petName: '',
-  petType: '',
-  careType: '',
-  startDate: '',
-  endDate: '',
-  specialRequests: ''
-};
-const BookNow = () => {
-  const [formValues, setFormValues] = useState(initialValues);
 
-  const handleSubmit = async (values, { resetForm }) => {
-    console.log('Form submitted:', values);
-    try {
-      const response = await axios.post(`${apiurl}/NewBooking`, { values }, { withCredentials: true });
-      console.log(response.data);
-      if (response.data.success) {
-        toast.success(response.data.message);
-        resetForm();
-      } else {
+  const BookNow = () => {
+    const [formValues, setFormValues] = useState({
+      petName: '',
+      petType: '',
+      careType: '',
+      startDate: '',
+      endDate: '',
+      specialRequests: '',
+      petImages: []
+    });
+
+    const handleUploadImage = async (event) => {
+      const file = event.target.files[0];
+      if (file) {
+        try {
+          const imageUrl = await UploadImage(file);
+          console.log("Uploaded image URL:", imageUrl);
+          setFormValues((prev) => ({
+            ...prev,
+            petImages: [...prev.petImages, imageUrl]
+          }));
+        } catch (error) {
+          console.error("Upload failed", error);
+        }
+      }
+    }
+
+    const handleSubmit = async () => {
+      console.log('Form submitted:', formValues);
+      try {
+        const response = await axios.post(`${apiurl}/NewBooking`, formValues, {
+          withCredentials: true,
+        });
+        console.log(response.data);
+        if (response.data.success) {
+          toast.success(response.data.message);
+          setFormValues({
+            petName: '',
+            petType: '',
+            careType: '',
+            startDate: '',
+            endDate: '',
+            specialRequests: '',
+            petImages: []
+          });
+        } else {
+          toast.error('Error booking your pet. Please try again later.');
+        }
+      } catch (error) {
+        console.error('Error booking your pet:', error);
         toast.error('Error booking your pet. Please try again later.');
       }
-    } catch (error) {
-      console.error('Error booking your pet:', error);
-      toast.error('Error booking your pet. Please try again later.');
-    }
-  };
+    };
 
-  return (
-    <div>
-      <Container component="main" maxWidth="md" id='source'>
+    return (
+      <Container maxWidth="md" id='source'>
         <Typography variant="h4" align="center" gutterBottom>
-          Going For a Vacation 
+          Going For a Vacation
         </Typography>
         <Grid container spacing={4}>
-          {/* Dog Images */}
           <Grid item xs={12} md={4}>
             <Card>
               <CardMedia
@@ -65,7 +80,7 @@ const BookNow = () => {
                 alt="Dog 1"
               />
               <CardContent>
-                <Typography variant="h6" component="div">
+                <Typography variant="h5" component="div">
                   Happy Pup
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
@@ -83,7 +98,7 @@ const BookNow = () => {
                 alt="Dog 2"
               />
               <CardContent>
-                <Typography variant="h6" component="div">
+                <Typography variant="h5" component="div">
                   Calm Canine
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
@@ -96,12 +111,12 @@ const BookNow = () => {
             <Card>
               <CardMedia
                 component="img"
-                height="160"
+                height="140"
                 image={image3}
                 alt="Dog 3"
               />
               <CardContent>
-                <Typography variant="h6" component="div">
+                <Typography variant="h5" component="div">
                   Energetic Pup
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
@@ -112,101 +127,140 @@ const BookNow = () => {
           </Grid>
         </Grid>
 
-        <Formik
-          initialValues={formValues}
-          validationSchema={validationSchema}
-          onSubmit={handleSubmit}
-        >
-          {({ errors, touched, resetForm }) => (
-            <Form>
-              <Grid container spacing={2} mt={4}>
-                <Grid item xs={12} sm={6}>
-                  <Field
-                    name="petName"
-                    as={TextField}
-                    label="Pet Name"
-                    fullWidth
-                    variant="outlined"
-                    error={touched.petName && Boolean(errors.petName)}
-                    helperText={touched.petName && errors.petName}
-                  />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                  <Field
-                    name="petType"
-                    as={TextField}
-                    label="Pet Type"
-                    fullWidth
-                    variant="outlined"
-                    error={touched.petType && Boolean(errors.petType)}
-                    helperText={touched.petType && errors.petType}
-                  />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                  <FormControl fullWidth variant="outlined">
-                    <InputLabel>Care Plan</InputLabel>
-                    <Field
-                      name="careType"
-                      as={Select}
-                      label="Care Plan"
-                      error={touched.careType && Boolean(errors.careType)}
+        <form noValidate autoComplete="off" onSubmit={(e) => {
+          e.preventDefault();
+          handleSubmit();
+        }}>
+          <Grid container spacing={3} mt={4}>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                label="Pet Name"
+                variant="outlined"
+                fullWidth
+                value={formValues.petName}
+                onChange={(e) => setFormValues({ ...formValues, petName: e.target.value })}
+                required
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                label="Pet Type"
+                variant="outlined"
+                fullWidth
+                value={formValues.petType}
+                onChange={(e) => setFormValues({ ...formValues, petType: e.target.value })}
+                required
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                select
+            
+                variant="outlined"
+                fullWidth
+                SelectProps={{
+                  native: true,
+                }}
+                value={formValues.careType}
+                onChange={(e) => setFormValues({ ...formValues, careType: e.target.value })}
+                required
+              >
+                <option value="">Select a plan</option>
+                <option value="basic">Basic</option>
+                <option value="standard">Standard</option>
+                <option value="premium">Premium</option>
+              </TextField>
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                label="Start Date"
+                type="date"
+                InputLabelProps={{ shrink: true }}
+                variant="outlined"
+                fullWidth
+                value={formValues.startDate}
+                onChange={(e) => setFormValues({ ...formValues, startDate: e.target.value })}
+                required
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                label="End Date"
+                type="date"
+                InputLabelProps={{ shrink: true }}
+                variant="outlined"
+                fullWidth
+                value={formValues.endDate}
+                onChange={(e) => setFormValues({ ...formValues, endDate: e.target.value })}
+                required
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                label="Special Requests"
+                variant="outlined"
+                fullWidth
+                multiline
+                rows={4}
+                value={formValues.specialRequests}
+                onChange={(e) => setFormValues({ ...formValues, specialRequests: e.target.value })}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <input
+                id="petImages"
+                name="petImages"
+                type="file"
+                multiple
+                onChange={handleUploadImage}
+                style={{ display: 'none' }}
+              />
+              <label htmlFor="petImages">
+                <Button variant="contained" component="span">
+                  Upload Images
+                </Button>
+              </label>
+            </Grid>
+            <Grid item xs={12}>
+              <div className="image-container" style={{ display: 'flex', flexWrap: 'wrap' }}>
+                {formValues.petImages.map((el, index) => (
+                  <div className="image-wrapper" key={index} style={{ position: 'relative', marginRight: '10px' }}>
+                    <img src={el} alt={`Pet ${index}`} style={{ width: '100px', height: '100px' }} />
+                    <div
+                      className="delete-icon"
+                      onClick={() => {
+                        const newPetImages = formValues.petImages.filter((_, i) => i !== index);
+                        setFormValues({ ...formValues, petImages: newPetImages });
+                      }}
+                      style={{
+                        position: 'absolute',
+                        top: 0,
+                        right: 0,
+                        backgroundColor: 'red',
+                        color: 'white',
+                        borderRadius: '50%',
+                        cursor: 'pointer',
+                        padding: '5px',
+                      }}
                     >
-                      <MenuItem value="basic">Basic</MenuItem>
-                      <MenuItem value="standard">Standard</MenuItem>
-                      <MenuItem value="premium">Premium</MenuItem>
-                    </Field>
-                    <FormHelperText>{touched.careType && errors.careType}</FormHelperText>
-                  </FormControl>
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                  <Field
-                    name="startDate"
-                    as={TextField}
-                    label="Start Date"
-                    type="date"
-                    fullWidth
-                    variant="outlined"
-                    InputLabelProps={{ shrink: true }}
-                    error={touched.startDate && Boolean(errors.startDate)}
-                    helperText={touched.startDate && errors.startDate}
-                  />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                  <Field
-                    name="endDate"
-                    as={TextField}
-                    label="End Date"
-                    type="date"
-                    fullWidth
-                    variant="outlined"
-                    InputLabelProps={{ shrink: true }}
-                    error={touched.endDate && Boolean(errors.endDate)}
-                    helperText={touched.endDate && errors.endDate}
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <Field
-                    name="specialRequests"
-                    as={TextField}
-                    label="Special Requests"
-                    fullWidth
-                    variant="outlined"
-                    multiline
-                    rows={4}
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <Button type="submit" variant="contained" color="primary" fullWidth>
-                    Submit Booking
-                  </Button>
-                </Grid>
-              </Grid>
-            </Form>
-          )}
-        </Formik>
+                      <MdDelete />
+                    </div>
+                  </div>
+                ))}
+                {formValues.petImages.length === 0 && (
+                  <Typography color="error">*Please upload pet images</Typography>
+                )}
+              </div>
+            </Grid>
+            <Grid item xs={12}>
+              <Button type="submit" variant="contained" color="primary" fullWidth>
+                Submit Booking
+              </Button>
+            </Grid>
+          </Grid>
+        </form>
       </Container>
-    </div>
-  );
-};
+    );
+  };
 
-export default BookNow;
+  export default BookNow;
