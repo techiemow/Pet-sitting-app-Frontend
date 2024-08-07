@@ -1,0 +1,25 @@
+.image-wrapper {
+    position: relative;
+    margin-right: 10px;
+  }
+  
+  .delete-icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    cursor: pointer;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.3s ease;
+    opacity: 0;
+  }
+  
+  .image-wrapper:hover .delete-icon {
+    opacity: 1;
+  }
+  

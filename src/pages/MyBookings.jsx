@@ -87,6 +87,23 @@ const MyBookings = () => {
     }
   };
 
+  const handledeleteBooking = async(id) =>{
+    try {
+      const response = await axios.delete(`${apiurl}/DeleteBooking/${id}`, {
+        withCredentials: true
+      });
+      console.log('Booking deleted:', response.data);
+      setBookings(bookings.filter(b => b._id!== id));
+    } catch (error) {
+      console.error('Error deleting booking:', error);
+    }
+  }
+
+
+  const handleEditBooking = (booking) => {
+    navigate('/UpdateBooking', { state: { booking } });
+  };
+
   return (
     <Container 
       maxWidth="lg" 
@@ -116,7 +133,7 @@ const MyBookings = () => {
             >
               <CardMedia
                 component="img"
-                height="140"
+                height="250"
                 image={booking.petImages[0]} // Display the first image
                 alt={booking.petName}
               />
@@ -151,10 +168,11 @@ const MyBookings = () => {
                   >
                     Pay Now
                   </Button>
-                  <Button variant="outlined" color="error" sx={{ mr: 1 }}>
+                  <Button variant="outlined" color="error" sx={{ mr: 1 }} 
+                  onClick={()=>{handledeleteBooking(booking._id)}}>
                     Delete
                   </Button>
-                  <Button variant="outlined">
+                  <Button variant="outlined" onClick={() => handleEditBooking(booking)}>
                     Edit
                   </Button>
                 </Box>

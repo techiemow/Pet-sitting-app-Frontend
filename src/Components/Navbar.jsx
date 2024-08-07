@@ -72,7 +72,7 @@ const Navbar = () => {
                 <a className="nav-link" onClick={() => handleNavigation('/Contact')}>Contact</a>
               </li>
             </ul>
-            <div className="d-flex m-3">
+            <div className="d-flex">
               {usertoken ? (
                 <Box sx={{ gap: 5, display: 'flex' }}>
                   <IconButton

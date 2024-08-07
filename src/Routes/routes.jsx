@@ -7,6 +7,7 @@ import BookNow from '../pages/BookNow';
 import Contact from '../pages/Contact';
 import PricingPlans from '../pages/PricingPlans';
 import MyBookings from '../pages/MyBookings';
+import BookingUpdate from '../pages/BookingUpdate';
 
 
 
@@ -44,6 +45,10 @@ const router  = createBrowserRouter(
     {
       path: "/MyBookings",
       element:<MyBookings />
+    },
+    {
+      path:"/UpdateBooking",
+      element:<BookingUpdate />
     },
     {
       path: "*",
