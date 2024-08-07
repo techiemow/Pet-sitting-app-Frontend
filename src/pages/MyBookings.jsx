@@ -9,6 +9,8 @@ const MyBookings = () => {
   const [bookings, setBookings] = useState([]);
   const User = useSelector(state => state?.User?.User);
   const navigate = useNavigate();
+  console.log("User email", User.email);
+  
 
   useEffect(() => {
     const fetchBookings = async () => {
@@ -16,6 +18,7 @@ const MyBookings = () => {
         const response = await axios.get(`${apiurl}/bookings`, {
           withCredentials: true
         });
+       
         setBookings(response.data.data);
       } catch (error) {
         console.error("There was an error fetching the bookings!", error);
@@ -41,9 +44,17 @@ const MyBookings = () => {
       console.log('Payment Success:', paymentResponse.data);
 
       if (paymentResponse.data.success) {
+        // Update booking to set payment as true
+        await axios.put(`${apiurl}/Status/${response.petDetails._id}/payment`, {
+          payment: true
+        }, {
+          withCredentials: true
+        });
+
+        setBookings(bookings.map(booking => 
+          booking._id === response.petDetails._id ? { ...booking, payment: true } : booking
+        ));
         navigate('/PaymentSuccess');
-      } else {
-        navigate('/PaymentFailure');
       }
     } catch (error) {
       console.error('Error handling payment success:', error);
@@ -93,12 +104,11 @@ const MyBookings = () => {
         withCredentials: true
       });
       console.log('Booking deleted:', response.data);
-      setBookings(bookings.filter(b => b._id!== id));
+      setBookings(bookings.filter(b => b._id !== id));
     } catch (error) {
       console.error('Error deleting booking:', error);
     }
   }
-
 
   const handleEditBooking = (booking) => {
     navigate('/UpdateBooking', { state: { booking } });
@@ -160,21 +170,30 @@ const MyBookings = () => {
                   Price: ₹{booking.price}
                 </Typography>
                 <Box sx={{ mt: 2 }}>
-                  <Button 
-                    variant="contained" 
-                    color="primary" 
-                    sx={{ mr: 1 }} 
-                    onClick={() => handlePayment(booking)} // Pass the price to handlePayment
-                  >
-                    Pay Now
-                  </Button>
+                  {!booking.payment && (
+                    <Button 
+                      variant="contained" 
+                      color="primary" 
+                      sx={{ mr: 1 }} 
+                      onClick={() => handlePayment(booking)} // Pass the price to handlePayment
+                    >
+                      Pay Now
+                    </Button>
+                  )}
+                  {booking.payment && (
+                    <Typography variant="body1" color="text.primary" sx={{ mt: 2 }}>
+                      Payment Done
+                    </Typography>
+                  )}
                   <Button variant="outlined" color="error" sx={{ mr: 1 }} 
-                  onClick={()=>{handledeleteBooking(booking._id)}}>
+                    onClick={() => handledeleteBooking(booking._id)}>
                     Delete
                   </Button>
-                  <Button variant="outlined" onClick={() => handleEditBooking(booking)}>
-                    Edit
-                  </Button>
+                  {!booking.payment && (
+                    <Button variant="outlined" onClick={() => handleEditBooking(booking)}>
+                      Edit
+                    </Button>
+                  )}
                 </Box>
               </CardContent>
             </Card>

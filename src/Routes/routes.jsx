@@ -8,6 +8,9 @@ import Contact from '../pages/Contact';
 import PricingPlans from '../pages/PricingPlans';
 import MyBookings from '../pages/MyBookings';
 import BookingUpdate from '../pages/BookingUpdate';
+import PaymentFailure from '../pages/PaymentFailure';
+import PaymentSuccess from '../pages/PaymentSucess';
+import Profile from '../pages/Profile';
 
 
 
@@ -49,6 +52,18 @@ const router  = createBrowserRouter(
     {
       path:"/UpdateBooking",
       element:<BookingUpdate />
+    },
+    {
+      path:"/PaymentSuccess",
+      element:<PaymentSuccess/>
+    },
+    {
+      path:"/PaymentFailure",
+      element:<PaymentFailure />
+    },
+    {
+      path:"/Profile",
+      element:<Profile/>
     },
     {
       path: "*",

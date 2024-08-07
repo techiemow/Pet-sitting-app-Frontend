@@ -7,9 +7,7 @@
   align-items: center;
 }
 
-.navbar-brand img {
-  margin-right: 10px;
-}
+
 
 .navbar-nav {
   margin: 0 auto; /* Center the navigation items */
@@ -35,6 +33,3 @@
   height: 70px; /* Adjust according to your Navbar's actual height */
 }
 
-.content {
-  padding-top: 70px; /* Adjust according to your Navbar's actual height */
-}

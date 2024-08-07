@@ -19,6 +19,7 @@ const Navbar = () => {
   const usertoken = localStorage.getItem('login');
 
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [isNavCollapsed, setIsNavCollapsed] = React.useState(true);
 
   const handleNavigation = (route) => {
     navigate(route);
@@ -44,8 +45,12 @@ const Navbar = () => {
     navigate("/");
   };
 
+  const handleNavCollapse = () => {
+    setIsNavCollapsed(!isNavCollapsed);
+  };
+
   return (
-    <div>
+    <div className={`${!isNavCollapsed ? 'bg-grey' : ''}`}>
       <nav className="navbar navbar-expand-lg fixed-top bg-body-tertiary">
         <div className="container-fluid justify-content-between">
           <div className="navbar-header d-flex align-items-center">
@@ -53,11 +58,18 @@ const Navbar = () => {
             <a className="navbar-brand" href="/">Paws & Claws</a>
           </div>
 
-          <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <button 
+            className="navbar-toggler" 
+            type="button" 
+            aria-controls="navbarSupportedContent" 
+            aria-expanded={!isNavCollapsed} 
+            aria-label="Toggle navigation"
+            onClick={handleNavCollapse}
+          >
             <span className="navbar-toggler-icon"></span>
           </button>
 
-          <div className="collapse navbar-collapse justify-content-center bg-body-tertiary" id="navbarSupportedContent p-3" >
+          <div className={`${isNavCollapsed ? 'collapse' : ''} navbar-collapse p-3 bg-body-tertiary `} id="navbarSupportedContent">
             <ul className="navbar-nav mb-2 mb-lg-0">
               <li className="nav-item">
                 <a className="nav-link" aria-current="page" onClick={() => handleNavigation('/')}>Home</a>
