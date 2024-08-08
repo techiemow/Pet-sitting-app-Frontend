@@ -69,7 +69,7 @@ const Navbar = () => {
             <span className="navbar-toggler-icon"></span>
           </button>
 
-          <div className={`${isNavCollapsed ? 'collapse' : ''} navbar-collapse p-3 bg-body-tertiary `} id="navbarSupportedContent">
+          <div className={`${isNavCollapsed ? 'collapse' : ''} navbar-collapse  bg-body-tertiary `} id="navbarSupportedContent">
             <ul className="navbar-nav mb-2 mb-lg-0">
               <li className="nav-item">
                 <a className="nav-link" aria-current="page" onClick={() => handleNavigation('/')}>Home</a>
@@ -135,7 +135,7 @@ const Navbar = () => {
                   </Button>
                   <Button
                     variant="contained"
-                    color="secondary"
+                    color="inherit"
                     onClick={() => handleNavigation('/SignUp')}
                   >
                     Sign Up

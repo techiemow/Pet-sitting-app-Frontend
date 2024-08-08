@@ -7,9 +7,9 @@ import { apiurl } from '../Constants/apiurl';
 const Profile = () => {
   const [user, setUser] = useState(null);
   const [bookings, setBookings] = useState([]);
-  const userId = useSelector(state => state?.User?.User?._id); // Ensure _id is accessed safely
 
-  useEffect(() => {
+
+
     const fetchUserProfile = async () => {
       try {
         const response = await axios.get(`${apiurl}/profile`, { withCredentials: true });
@@ -20,17 +20,19 @@ const Profile = () => {
       }
     };
 
-    if (userId) {
+
+  useEffect(() => {
+  
       fetchUserProfile();
-    }
-  }, [userId]);
+    
+  }, []);
 
   if (!user) {
     return <div>Loading...</div>; // Show a loading message or spinner
   }
 
   return (
-    <Container maxWidth="lg">
+    <Container maxWidth="lg" >
       <Typography variant="h4" gutterBottom>
         Profile
       </Typography>

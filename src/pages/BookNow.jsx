@@ -186,7 +186,7 @@ const BookNow = () => {
           <Grid item xs={12} sm={6}>
             <TextField
               select
-              label="Care Plan"
+             
               variant="outlined"
               fullWidth
               SelectProps={{
@@ -292,6 +292,10 @@ const BookNow = () => {
             </Button>
           </Grid>
         </Grid>
+        <Button type="submit" className='my-2' fullWidth variant="contained" color="error" onClick={()=>{navigate("/")}}>
+              Cancel
+            </Button>
+
       </form>
     </Container>
   );

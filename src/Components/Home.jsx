@@ -1,6 +1,7 @@
 import React from 'react';
 import carousel1 from "../assets/carousel1.jpg";
 import carousel3 from "../assets/carousel3.jpg";
+import carousel2 from "../assets/dogs.jpg";
 import about1 from "../assets/about-1.jpg";
 import about2 from "../assets/about-2.jpg";
 import about3 from "../assets/about-3.jpg";
@@ -26,6 +27,9 @@ const Home = () => {
             <img className="d-block w-100" src={carousel1} alt="First slide" />
           </div>
           <div className="carousel-item active">
+            <img className="d-block w-100" src={carousel2} alt="second slide" />
+          </div>
+          <div className="carousel-item ">
             <img className="d-block w-100" src={carousel3} alt="Third slide" />
           </div>
         </div>

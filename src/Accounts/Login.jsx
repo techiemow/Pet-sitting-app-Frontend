@@ -26,7 +26,7 @@ function Copyright(props) {
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
       <Link color="inherit" to={"/"} className='hover:underline text-blue-400'>
-        Your Website
+      Paws and Claws
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}

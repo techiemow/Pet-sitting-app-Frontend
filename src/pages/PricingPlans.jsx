@@ -49,10 +49,12 @@ const PricingPlans = () => {
               </CardContent>
               <CardContent style={{ marginTop: "25px" }}>
                 <ul style={{ listStyleType: "none" }}>
-                  <li>Pet Boarding</li>
-                  <li>Pet Feeding</li>
-                  <li>Basic Grooming</li>
-                  <li>Play Time</li>
+                  <li>✅ Pet Boarding</li>
+                  <li>✅ Pet Feeding</li>
+                  <li>❌ Basic Grooming</li>
+                  <li>✅ Play Time</li>
+                  <li>❌ Advanced Training</li>
+                  <li>❌ Veterinary Care</li>
                 </ul>
               </CardContent>
               <CardActions>
@@ -85,11 +87,12 @@ const PricingPlans = () => {
               </CardContent>
               <CardContent>
                 <ul style={{ listStyleType: "none" }}>
-                  <li>Pet Boarding</li>
-                  <li>Pet Feeding</li>
-                  <li>Advanced Grooming</li>
-                  <li>Play Time</li>
-                  <li>Basic Training</li>
+                  <li>✅ Pet Boarding</li>
+                  <li>✅ Pet Feeding</li>
+                  <li>✅ Advanced Grooming</li>
+                  <li>✅ Play Time</li>
+                  <li>❌ Advanced Training</li>
+                  <li>❌Veterinary Care</li>
                 </ul>
               </CardContent>
               <CardActions>
@@ -122,12 +125,12 @@ const PricingPlans = () => {
               </CardContent>
               <CardContent>
                 <ul style={{ listStyleType: "none" }}>
-                  <li>Pet Boarding</li>
-                  <li>Pet Feeding</li>
-                  <li>Full Grooming</li>
-                  <li>Play Time</li>
-                  <li>Advanced Training</li>
-                  <li>Veterinary Care</li>
+                  <li>✅ Pet Boarding</li>
+                  <li>✅ Pet Feeding</li>
+                  <li>✅ Full Grooming</li>
+                  <li>✅ Play Time</li>
+                  <li>✅ Advanced Training</li>
+                  <li>✅ Veterinary Care</li>
                 </ul>
               </CardContent>
               <CardActions>

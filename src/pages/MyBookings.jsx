@@ -9,8 +9,7 @@ const MyBookings = () => {
   const [bookings, setBookings] = useState([]);
   const User = useSelector(state => state?.User?.User);
   const navigate = useNavigate();
-  console.log("User email", User.email);
-  
+
 
   useEffect(() => {
     const fetchBookings = async () => {
@@ -18,7 +17,7 @@ const MyBookings = () => {
         const response = await axios.get(`${apiurl}/bookings`, {
           withCredentials: true
         });
-       
+
         setBookings(response.data.data);
       } catch (error) {
         console.error("There was an error fetching the bookings!", error);
@@ -51,7 +50,7 @@ const MyBookings = () => {
           withCredentials: true
         });
 
-        setBookings(bookings.map(booking => 
+        setBookings(bookings.map(booking =>
           booking._id === response.petDetails._id ? { ...booking, payment: true } : booking
         ));
         navigate('/PaymentSuccess');
@@ -98,7 +97,7 @@ const MyBookings = () => {
     }
   };
 
-  const handledeleteBooking = async(id) =>{
+  const handledeleteBooking = async (id) => {
     try {
       const response = await axios.delete(`${apiurl}/DeleteBooking/${id}`, {
         withCredentials: true
@@ -115,10 +114,10 @@ const MyBookings = () => {
   };
 
   return (
-    <Container 
-      maxWidth="lg" 
-      sx={{ 
-        paddingTop: 4, 
+    <Container
+      maxWidth="lg"
+      sx={{
+        paddingTop: 4,
         backgroundColor: '#f5f5f5', // Mild background color
         borderRadius: 2,
         boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
@@ -131,7 +130,7 @@ const MyBookings = () => {
       <Grid container spacing={3}>
         {bookings.map(booking => (
           <Grid item xs={12} sm={6} md={4} key={booking._id}>
-            <Card 
+            <Card
               sx={{
                 boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
                 transition: 'transform 0.3s ease-in-out',
@@ -169,28 +168,36 @@ const MyBookings = () => {
                 <Typography variant="body1" color="text.primary" sx={{ mt: 2 }}>
                   Price: ₹{booking.price}
                 </Typography>
-                <Box sx={{ mt: 2 }}>
-                  {!booking.payment && (
-                    <Button 
-                      variant="contained" 
-                      color="primary" 
-                      sx={{ mr: 1 }} 
-                      onClick={() => handlePayment(booking)} // Pass the price to handlePayment
-                    >
-                      Pay Now
-                    </Button>
-                  )}
-                  {booking.payment && (
-                    <Typography variant="body1" color="text.primary" sx={{ mt: 2 }}>
-                      Payment Done
-                    </Typography>
-                  )}
-                  <Button variant="outlined" color="error" sx={{ mr: 1 }} 
-                    onClick={() => handledeleteBooking(booking._id)}>
+                <Box sx={{ mt: 2, display: 'flex', alignItems: 'center' }}>
+                  <Box sx={{ flexGrow: 1 }}>
+                    {!booking.payment ? (
+                      <Button
+                        variant="contained"
+                        color="primary"
+                        sx={{ mr: 1 }}
+                        onClick={() => handlePayment(booking)}
+                      >
+                        Pay Now
+                      </Button>
+                    ) : (
+                      <Typography variant="body1" color="text.primary">
+                        Payment Done
+                      </Typography>
+                    )}
+                  </Box>
+                  <Button
+                    variant="outlined"
+                    color="error"
+                    sx={{ mr: 1 }}
+                    onClick={() => handledeleteBooking(booking._id)}
+                  >
                     Delete
                   </Button>
                   {!booking.payment && (
-                    <Button variant="outlined" onClick={() => handleEditBooking(booking)}>
+                    <Button
+                      variant="outlined"
+                      onClick={() => handleEditBooking(booking)}
+                    >
                       Edit
                     </Button>
                   )}
