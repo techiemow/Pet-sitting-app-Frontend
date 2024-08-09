@@ -9,6 +9,8 @@ const MyBookings = () => {
   const [bookings, setBookings] = useState([]);
   const User = useSelector(state => state?.User?.User);
   const navigate = useNavigate();
+  console.log(User);
+  
 
 
   useEffect(() => {
