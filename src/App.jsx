@@ -24,7 +24,7 @@ function App() {
       const dataResponse = await axios.get(`${apiurl}/UserDetails`, {
         withCredentials: true,
       });
-      console.log('user', dataResponse.data.data);
+
       
       if (dataResponse.data.success) {
         dispatch(setUserDetails(dataResponse.data.data));

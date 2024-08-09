@@ -85,7 +85,7 @@ export default function SignUp() {
   });
 
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
-    console.log(values);
+
     try {
       const hashedPassword = await bcrypt.hash(values.password, 10);
       const apiResponse = await axios.post(`${apiurl}/Signup`, {

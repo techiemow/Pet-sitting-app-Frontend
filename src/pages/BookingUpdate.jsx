@@ -96,7 +96,7 @@ const UpdateBooking = () => {
       const response = await axios.put(`${apiurl}/UpdateBooking/${booking._id}`, formValues, {
         withCredentials: true,
       });
-      console.log(response.data);
+     
       if (response.data.success) {
         toast.success(response.data.message);
         navigate("/MyBookings");

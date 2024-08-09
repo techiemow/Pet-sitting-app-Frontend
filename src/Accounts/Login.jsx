@@ -80,7 +80,7 @@ const Login = () => {
         withCredentials: true
       });
       
-      console.log(apiResponse.data.data)
+    
       if (apiResponse.data.success) {
         localStorage.setItem('login', apiResponse.data.data.user.username);
         localStorage.setItem('usertoken', apiResponse.data.data.token);

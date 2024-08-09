@@ -57,7 +57,7 @@ const BookNow = () => {
     if (file) {
       try {
         const imageUrl = await UploadImage(file);
-        console.log("Uploaded image URL:", imageUrl);
+       
         setFormValues((prev) => ({
           ...prev,
           petImages: [...prev.petImages, imageUrl]
@@ -75,7 +75,7 @@ const BookNow = () => {
       const response = await axios.post(`${apiurl}/NewBooking`, formValues, {
         withCredentials: true,
       });
-      console.log(response.data);
+ 
       if (response.data.success) {
         toast.success(response.data.message);
         setFormValues({

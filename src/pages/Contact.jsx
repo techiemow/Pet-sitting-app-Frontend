@@ -57,7 +57,7 @@ const Contact = () => {
                   <div className="control-group">
                     <Field
                       type="text"
-                      className="form-control p-4"
+                      className="form-control p-4 m-3"
                       id="name"
                       name="name"
                       placeholder="Your Name"
@@ -67,7 +67,7 @@ const Contact = () => {
                   <div className="control-group">
                     <Field
                       type="email"
-                      className="form-control p-4"
+                      className="form-control p-4 m-3"
                       id="email"
                       name="email"
                       placeholder="Your Email"
@@ -77,7 +77,7 @@ const Contact = () => {
                   <div className="control-group">
                     <Field
                       type="text"
-                      className="form-control p-4"
+                      className="form-control p-4 m-3"
                       id="subject"
                       name="subject"
                       placeholder="Subject"
@@ -87,7 +87,7 @@ const Contact = () => {
                   <div className="control-group">
                     <Field
                       as="textarea"
-                      className="form-control p-4"
+                      className="form-control p-4 m-3"
                       rows="6"
                       id="message"
                       name="message"
@@ -97,7 +97,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <button
-                      className="btn btn-primary py-3 px-5"
+                      className="btn btn-primary py-3 px-5 m-3"
                       type="submit"
                       id="sendMessageButton"
                       disabled={isSubmitting}
