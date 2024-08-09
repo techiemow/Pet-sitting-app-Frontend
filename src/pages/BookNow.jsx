@@ -286,7 +286,7 @@ const BookNow = () => {
             </div>
           </Grid>
           <Grid item xs={12} textAlign={"center"}>
-            <Typography variant="h6">Total Price: ${price}</Typography>
+            <Typography variant="h6">Total Price: ₹{price}</Typography>
           </Grid>
           <Grid item xs={12}>
             <Button type="submit" fullWidth variant="contained" color="primary">
