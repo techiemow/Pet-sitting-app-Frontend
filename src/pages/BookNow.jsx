@@ -72,6 +72,7 @@ const BookNow = () => {
     event.preventDefault();
     console.log('Form submitted:', formValues);
     try {
+       console.log(apiurl,"apiurl");
       const response = await axios.post(`${apiurl}/NewBooking`, formValues, {
         withCredentials: true,
       });
